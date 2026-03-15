@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Pac-Man</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-container">
+        <div class="header">
+            <div class="score-board">
+                <span>Score: <span id="score">0</span></span>
+                <span>Lives: <span id="lives">3</span></span>
+            </div>
+        </div>
+        <canvas id="gameCanvas" width="440" height="520"></canvas>
+        <p class="desktop-hint">Use Arrow Keys to Move</p>
+        <div id="gameMessage" class="message"></div>
+        
+        <!-- Game Over / Win Modal -->
+        <div id="gameModal" class="modal">
+            <div class="modal-content">
+                <h2 id="modalTitle"></h2>
+                <p id="modalScore"></p>
+                <button id="modalRestartBtn" class="modal-btn">Play Again</button>
+                <button id="modalCloseBtn" class="modal-btn secondary">Close</button>
+            </div>
+        </div>
+        
+        <!-- Mobile touch controls -->
+        <div class="mobile-controls" id="mobileControls">
+            <!-- Game control buttons in one row -->
+            <div class="controls-row">
+                <button class="action-btn" id="startBtn">Start</button>
+                <button class="action-btn" id="pauseBtn">Pause</button>
+                <button class="action-btn" id="restartBtn">Restart</button>
+            </div>
+            <!-- Virtual Joystick -->
+            <div class="joystick-container">
+                <div class="joystick-base" id="joystickBase">
+                    <div class="joystick-stick" id="joystickStick"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="game.js"></script>
+</body>
+</html>

@@ -1,0 +1,360 @@
+/* Pac-Man Game Styles */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-family: 'Arial', sans-serif;
+    touch-action: none;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.game-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    max-width: 100%;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 8px;
+}
+
+.score-board {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    color: #fff;
+    font-size: 1.1rem;
+}
+
+#gameCanvas {
+    border: 3px solid #2121de;
+    border-radius: 5px;
+    background-color: #000;
+    max-width: 100%;
+    height: auto;
+}
+
+.desktop-hint {
+    color: #888;
+    font-size: 0.9rem;
+    margin: 10px 0;
+    text-align: center;
+}
+
+.message {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 15px 0;
+    padding: 15px 30px;
+    border-radius: 10px;
+    display: none;
+}
+
+.message.win {
+    display: block;
+    background: linear-gradient(135deg, #00ff00, #008800);
+    color: #fff;
+    animation: pulse 1s infinite;
+}
+
+.message.lose {
+    display: block;
+    background: linear-gradient(135deg, #ff0000, #880000);
+    color: #fff;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+/* Mobile Controls */
+.mobile-controls {
+    display: none;
+    width: 100%;
+    max-width: 500px;
+    padding: 15px 10px;
+    gap: 20px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Show on mobile */
+@media (max-width: 768px) {
+    .mobile-controls {
+        display: flex;
+    }
+    
+    .desktop-hint {
+        display: none;
+    }
+}
+
+/* Control buttons in one row */
+.controls-row {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+}
+
+.action-btn {
+    width: 75px;
+    height: 50px;
+    border: none;
+    border-radius: 25px;
+    background: linear-gradient(145deg, #2121de, #1a1ab8);
+    color: #fff;
+    font-size: 0.85rem;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: all 0.1s ease;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.action-btn:active,
+.action-btn.active {
+    transform: scale(0.9);
+    background: linear-gradient(145deg, #ff69b4, #e0509a);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Joystick Container */
+.joystick-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.joystick-base {
+    width: 140px;
+    height: 140px;
+    background: linear-gradient(145deg, #1a1a2e, #0f0f1a);
+    border-radius: 50%;
+    position: relative;
+    box-shadow: 
+        inset 0 4px 8px rgba(0, 0, 0, 0.5),
+        0 4px 8px rgba(0, 0, 0, 0.3);
+    border: 3px solid #333;
+}
+
+.joystick-stick {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(145deg, #4a4a6a, #2a2a4a);
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 
+        inset 0 -4px 8px rgba(0, 0, 0, 0.3),
+        0 4px 8px rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+    transition: transform 0.05s ease-out;
+    touch-action: none;
+}
+
+.joystick-stick::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40px;
+    height: 40px;
+    background: radial-gradient(circle at 30% 30%, #6a6a8a, #3a3a5a);
+    border-radius: 50%;
+    box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.2);
+}
+
+.joystick-stick.active {
+    background: linear-gradient(145deg, #5a5a7a, #3a3a5a);
+}
+
+/* Landscape mode optimizations */
+@media (max-width: 768px) and (orientation: landscape) {
+    .controls-row {
+        gap: 8px;
+    }
+    
+    .action-btn {
+        width: 65px;
+        height: 45px;
+        font-size: 0.75rem;
+    }
+    
+    .joystick-base {
+        width: 120px;
+        height: 120px;
+    }
+    
+    .joystick-stick {
+        width: 50px;
+        height: 50px;
+    }
+}
+
+/* Small screens */
+@media (max-width: 480px) {
+    .controls-row {
+        gap: 8px;
+    }
+    
+    .action-btn {
+        width: 70px;
+        height: 45px;
+        font-size: 0.8rem;
+    }
+    
+    .joystick-base {
+        width: 130px;
+        height: 130px;
+    }
+    
+    .joystick-stick {
+        width: 55px;
+        height: 55px;
+    }
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 0.3s ease;
+}
+
+.modal.show {
+    display: flex;
+}
+
+.modal-content {
+    background: linear-gradient(145deg, #1a1a2e, #0f0f1a);
+    padding: 40px 50px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 
+        0 10px 40px rgba(0, 0, 0, 0.5),
+        0 0 0 3px rgba(255, 255, 255, 0.1);
+    animation: slideIn 0.3s ease;
+    max-width: 90%;
+    width: 350px;
+}
+
+.modal-content h2 {
+    font-size: 2rem;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.modal-content.win h2 {
+    background: linear-gradient(135deg, #00ff00, #00cc00);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 0 30px rgba(0, 255, 0, 0.3);
+}
+
+.modal-content.lose h2 {
+    background: linear-gradient(135deg, #ff4444, #cc0000);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 0 30px rgba(255, 0, 0, 0.3);
+}
+
+.modal-content p {
+    color: #fff;
+    font-size: 1.3rem;
+    margin-bottom: 30px;
+}
+
+.modal-btn {
+    display: block;
+    width: 100%;
+    padding: 15px 30px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.modal-btn.primary {
+    background: linear-gradient(145deg, #00ff00, #00cc00);
+    color: #000;
+}
+
+.modal-btn.secondary {
+    background: linear-gradient(145deg, #4a4a6a, #2a2a4a);
+    color: #fff;
+}
+
+.modal-btn:active {
+    transform: scale(0.95);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideIn {
+    from { 
+        opacity: 0;
+        transform: translateY(-30px) scale(0.9);
+    }
+    to { 
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Mobile optimizations for modal */
+@media (max-width: 480px) {
+    .modal-content {
+        padding: 30px 25px;
+        width: 85%;
+    }
+    
+    .modal-content h2 {
+        font-size: 1.6rem;
+    }
+    
+    .modal-content p {
+        font-size: 1.1rem;
+    }
+    
+    .modal-btn {
+        padding: 12px 25px;
+        font-size: 1rem;
+    }
+}
